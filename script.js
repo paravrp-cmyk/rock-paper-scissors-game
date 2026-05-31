@@ -1,17 +1,21 @@
-function getHumChoice(){
-    let answer= prompt("Please enter yout choice: Rock, Paper or Scissors")
-    return answer
-}
+const btn = document.querySelectorAll('.choise-btn');
+
+btn.forEach((button)=>{
+    button.addEventListener('click', () =>{
+        const humChoice = button.id;
+        playRound(humChoice, getCompChoice());
+    });
+});
 
 function getCompChoice(){
     let i = Math.random()
     let v;
     if (i < 0.33333){
-     v = 'Rock';
+     v = 'rock';
     } else if (i>0.33333 && i < 0.66666){
-     v = 'Paper';
+     v = 'paper';
     } else {
-     v ='Scissors';
+     v ='scissors';
     }
     return v;
 }
@@ -19,42 +23,35 @@ function getCompChoice(){
 let humScore = 0;
 let compScore = 0;
 
-function playRound(humChoice, compChoice){
-    if (!humChoice){
-        console.log('You discard the round.');
-        return;
+function playRound(hCoice, compChoice){
+    const res = document.querySelector('.result');
+    if (hCoice===compChoice){
+        humScore+=1;
+        compScore+=1;
+        res.textContent = `Your choice: ${hCoice}, Computer Choice: ${compChoice}. Score: ${humScore}-${compScore}`;
+    } else if (hCoice === 'rock' && compChoice === 'paper' || 
+        hCoice === 'paper' && compChoice === 'scissors' ||
+        hCoice === 'scissors' && compChoice === 'rock'){
+        compScore+=1;
+        res.textContent = `Your choice: ${hCoice}, Computer Choice: ${compChoice}. Score: ${humScore}-${compScore}`;
+    } else if (hCoice === 'paper' && compChoice === 'rock' ||
+        hCoice === 'rock' && compChoice === 'scissors' ||
+        hCoice === 'scissors' && compChoice === 'paper'){
+        humScore+=1;
+        res.textContent = `Your choice: ${hCoice}, Computer Choice: ${compChoice}. Score: ${humScore}-${compScore}`;
     }
 
-    const hum=humChoice.toLowerCase();
-    const comp=compChoice.toLowerCase();
-
-    console.log(`Your choice: ${hum} | Computer choice: ${comp}`)
-    
-    if (hum===comp){
-        console.log('Draw in this round!');
-        humScore+=1;
-        compScore+=1;
-    } else if (hum==='rock' && comp==='paper'){
-        compScore+=1;
-    } else if (hum==='paper' && comp==='rock'){
-        humScore+=1;
-    } else if (hum==='rock'&&comp==='scissors'){
-        humScore+=1;
-    } else if (hum==='paper'&&comp==='scissors'){
-        compScore+=1;
-    } else if (hum==='scissors'&&comp==='rock'){
-        compScore+=1;
-    } else if (hum==='scissors'&&comp==='paper'){
-        humScore+=1;
+    if (humScore === 5 || compScore === 5){
+        res.textContent = `GAME OVER! Score: ${humScore}-${compScore}`
+        humScore = 0;
+        compScore = 0;
     }
-    console.log(`Round score -> You: ${humScore} | Computer: ${compScore}`);
-    console.log('---------------------------------------------');
+
 }
 
-function playGame(){
-    console.log('=== Round 1 ===');
-    playRound(getHumChoice(),getCompChoice());
-    console.log('=== Round 2 ===');
+//*function playGame(){
+   //* playRound(humChoice, getCompChoice());
+   /**  console.log('=== Round 2 ===');
     playRound(getHumChoice(),getCompChoice());
     console.log('=== Round 3 ===');
     playRound(getHumChoice(),getCompChoice());
@@ -64,4 +61,5 @@ function playGame(){
     playRound(getHumChoice(),getCompChoice());
 
 }
-playGame()
+playGame()*/
+
