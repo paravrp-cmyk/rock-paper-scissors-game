@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="arcade-machine">
+        <h1 class="header-plaque">SUPER ROCK PAPER SCISSORS</h1>
+
+        <div class="screen-container">
+             <div class="result">Choose your symbol to start the game!</div>
+        </div>
+
+        <div class="control-panel">
+            <button class="choice-btn" id="Rock">✊<p>Rock</p></button>
+            <button class="choice-btn" id="Paper">✋<p>Paper</p></button>
+            <button class="choice-btn" id="Scissors"><p>✌Scissors</p></button>
+        </div>
+        <div class="restart-button">
+            <button class="restart">🔄Play again</button>
+        </div>
+    </div>
     <script src="script.js" defer></script>
-    <button class="choise-btn" id="Rock">✊Rock</button>
-    <button class="choise-btn" id="Paper">✋Paper</button>
-    <button class="choise-btn" id="Scissors">✌Scissors</button>
-    <div class="result">Choose your symbol to start the game!</div>
-    <button class="restart">🔄Play again</button>
 </body>
 </html>
