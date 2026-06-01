@@ -26,25 +26,26 @@ let humScore = 0;
 let compScore = 0;
 
 function playRound(hChoice, compChoice){
-    if (humScore === 5 || compScore === 5) {
-        res.textContent = `GAME OVER! Score: ${humScore}-${compScore}`
+    if (humScore === 5) {
+        res.innerText = `GAME OVER\n\nYOU WIN!\nScore: ${humScore}-${compScore}`
+        return;
+    } else if (compScore === 5) {
+        res.innerText = `GAME OVER\n\nCOMPUTER WINS!\nScore: ${humScore}-${compScore}`
         return;
     }
 
     if (hChoice===compChoice) {
-        humScore+=1;
-        compScore+=1;
-        res.innerText = `Your choice: ${hChoice}\nComputer Choice: ${compChoice}\nScore: ${humScore}-${compScore}`;
+        res.innerText = `Your choice: ${hChoice}\nComputer Choice: ${compChoice}\nThat's a tie in this round!\nScore: ${humScore}-${compScore}`;
     } else if (hChoice === 'Rock' && compChoice === 'Paper' || 
         hChoice === 'Paper' && compChoice === 'Scissors' ||
         hChoice === 'Scissors' && compChoice === 'Rock') {
         compScore+=1;
-        res.innerText = `Your choice: ${hChoice}\nComputer Choice: ${compChoice}\nScore: ${humScore}-${compScore}`;
+        res.innerText = `Your choice: ${hChoice}\nComputer Choice: ${compChoice}\nComputer wins this round!\nScore: ${humScore}-${compScore}`;
     } else if (hChoice === 'Paper' && compChoice === 'Rock' ||
         hChoice === 'Rock' && compChoice === 'Scissors' ||
         hChoice === 'Scissors' && compChoice === 'Paper') {
         humScore+=1;
-        res.innerText = `Your choice: ${hChoice}\nComputer Choice: ${compChoice}\nScore: ${humScore}-${compScore}`;
+        res.innerText = `Your choice: ${hChoice}\nComputer Choice: ${compChoice}\nYou win this round!\nScore: ${humScore}-${compScore}`;
         }
 }
 
